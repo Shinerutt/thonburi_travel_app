@@ -1,0 +1,7 @@
+{
+  "name": "thonburi_travel",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}

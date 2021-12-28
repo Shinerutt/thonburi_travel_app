@@ -1,0 +1,148 @@
+<template>
+  <ion-page>
+    <ion-content :fullscreen="true" class="no-scroll">
+      <div id="position-box">
+        <div id="crical"></div>
+        <div id="crical2"></div>
+        <div id="crical3"></div>
+        <div id="crical4"></div>
+        <div id="square">
+          <div id="box">
+            <h1 >สมัครสมาชิก</h1>
+            <br />
+            <input
+              class="input-custom"
+              type="text"
+              name="username"
+              id="username"
+              placeholder="ชื่อผู้ใช้"
+            />
+            <input
+              class="input-custom"
+              type="text"
+              name="password"
+              id="password"
+              placeholder="รหัสผ่าน"
+            />
+            <input
+              class="input-custom"
+              type="text"
+              name="email"
+              id="email"
+              placeholder="email"
+            />
+            <button class="button-custom">ตกลง</button><br><br>
+            <!-- <ion-button  class="button-custom" color="secondary" >ตกลง</ion-button> -->
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+              "
+            >
+              <div>พร้อมใช้งานแล้ว</div>
+              <div style="color: #eb6957" @click="()=>{router.push('/login')}">เข้าสู่ระบบ</div>
+            </div>
+            <!-- <ion-button class="button-custom" color="secondary">เข้าสู่ระบบ</ion-button> -->
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ion-page>
+</template>
+
+<script lang="ts">
+import { IonPage, IonContent } from "@ionic/vue";
+import { useRouter } from "vue-router";
+export default {
+  components: { IonContent, IonPage },
+  methods: {
+  
+  },
+  setup() {
+    const router = useRouter();
+    return { router };
+  },
+};
+</script>
+
+<style scoped>
+.no-scroll .scroll-content {
+  overflow: hidden;
+}
+.button-custom {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: #19B7CD;
+  width: 100%;
+  height: 40px;
+}
+.input-custom {
+  width: 100%;
+  height: 40px;
+  color: #f49284;
+  margin-bottom: 25px;
+  border: none;
+  -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+}
+#box {
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-right: 50px;
+}
+#position-box {
+  position: relative;
+  background-color: whitesmoke;
+  height: 100%;
+}
+#crical {
+  width: 35vw;
+  height: 35vw;
+  background-color: #eb6957;
+  border-radius: 100%;
+  top: -10%;
+  right: 5%;
+  position: absolute;
+}
+#crical2 {
+  width: 35vw;
+  height: 35vw;
+  background-color: #eb695778;
+  border-radius: 100%;
+  position: absolute;
+  top: -10%;
+  right: -3%;
+}
+#crical3 {
+  width: 35vw;
+  height: 35vw;
+  background-color: #eb6957;
+  border-radius: 100%;
+  position: absolute;
+  bottom: -15%;
+  left: 10%;
+}
+#crical4 {
+  width: 35vw;
+  height: 35vw;
+  position: absolute;
+  background-color: #eb695778;
+  border-radius: 100%;
+  bottom: -15%;
+  left: 20%;
+}
+#square {
+  width: 90vw;
+  height: 530px;
+  position: absolute;
+  background-color: #eeeeee;
+  top: 16%;
+  border-radius: 0px 20px 20px 0px;
+  -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+}
+</style>

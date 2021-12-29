@@ -8,30 +8,34 @@
         <div id="crical4"></div>
         <div id="square">
           <div id="box">
-            <h1 >สมัครสมาชิก</h1>
+            <h1>สมัครสมาชิก</h1>
             <br />
             <input
+              v-model="record.email"
               class="input-custom"
               type="text"
-              name="username"
-              id="username"
-              placeholder="ชื่อผู้ใช้"
+              name="email"
+              id="email"
+              placeholder="ชื่อผู้ใช้ abc@gamil.com"
             />
             <input
+              v-model="record.password"
               class="input-custom"
-              type="text"
+              type="password"
               name="password"
               id="password"
               placeholder="รหัสผ่าน"
             />
             <input
+              v-model="record.nickname"
               class="input-custom"
               type="text"
-              name="email"
-              id="email"
-              placeholder="email"
+              name="nickname"
+              id="nickname"
+              placeholder="ชื่อเล่น"
             />
-            <button class="button-custom">ตกลง</button><br><br>
+            <button @click="signup" class="button-custom">ตกลง</button
+            ><br /><br />
             <!-- <ion-button  class="button-custom" color="secondary" >ตกลง</ion-button> -->
 
             <div
@@ -42,7 +46,16 @@
               "
             >
               <div>พร้อมใช้งานแล้ว</div>
-              <div style="color: #eb6957" @click="()=>{router.push('/login')}">เข้าสู่ระบบ</div>
+              <div
+                style="color: #eb6957"
+                @click="
+                  () => {
+                    router.push('/login');
+                  }
+                "
+              >
+                เข้าสู่ระบบ
+              </div>
             </div>
             <!-- <ion-button class="button-custom" color="secondary">เข้าสู่ระบบ</ion-button> -->
           </div>
@@ -55,16 +68,49 @@
 <script lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
 import { useRouter } from "vue-router";
-export default {
+import axios from "axios";
+import { defineComponent } from "vue";
+const endPoint = "http://127.0.0.1:3333";
+export default defineComponent({
   components: { IonContent, IonPage },
   methods: {
-  
+    signup() {
+      console.log(this.record);
+      axios
+        .post(`${endPoint}/register`, {
+          ...this.record,
+        })
+        .then((res) => {
+          if(res.data.status == true){            
+            this.router.push('/login')
+          }else{
+            alert("Register Error!!!")
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          
+          alert("Network Error!!!")
+        })
+    },
   },
   setup() {
     const router = useRouter();
     return { router };
   },
-};
+
+  data() {
+    return {
+      record: {
+        email: "",
+        password: "",
+        first_name: "",
+        last_name: "",
+        nick_name: "",
+      },
+    };
+  },
+});
 </script>
 
 <style scoped>
@@ -74,7 +120,7 @@ export default {
 .button-custom {
   margin-top: 25px;
   margin-bottom: 25px;
-  background-color: #19B7CD;
+  background-color: #19b7cd;
   width: 100%;
   height: 40px;
 }

@@ -13,12 +13,8 @@
       </ion-header>
       <H1>Hello world</H1>
       <ion-button @click="getAPI()">Default</ion-button>
-      <ion-list>
-        <ion-item v-for="(list_item,index) in lists" :key="index">
-          <ion-label>{{list_item.title}}</ion-label>
-        </ion-item>
-      </ion-list>
 
+      {{ user }}
       <!-- <ExploreContainer name="Tab 1 page" /> -->
     </ion-content>
   </ion-page>
@@ -33,6 +29,7 @@ import {
   IonContent,
 } from "@ionic/vue";
 // import ExploreContainer from "@/components/ExploreContainer.vue";
+
 import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
 export default defineComponent({
@@ -46,7 +43,19 @@ export default defineComponent({
   },
   data() {
     return {
+      user_id: "508e47fc-5612-482f-92df-2dc7adc4ea0a",
       lists: [],
+      user: {
+        id: "",
+        email: "",
+        password: "",
+        first_name: "",
+        last_name: "",
+        nick_name: "",
+        img_profile: "",
+        created_at: "",
+        updated_at: "",
+      },
     };
   },
   created() {
@@ -56,10 +65,9 @@ export default defineComponent({
   methods: {
     getAPI() {
       axios
-        .get("https://jsonplaceholder.typicode.com/todos")
+        .get(`http://127.0.0.1:3333/user/${this.user_id}`)
         .then((res: AxiosResponse) => {
-          console.log("then", res.data);
-          this.lists = res.data;
+          this.user = res.data;
         })
         .catch((error) => {
           console.log("catch");

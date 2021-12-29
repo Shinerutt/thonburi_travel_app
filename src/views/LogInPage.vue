@@ -23,7 +23,7 @@
               "
             >
               <div>ต้องการสมัครสมาชิก</div>
-              <div style="color: #eb6957" @click="()=>{router.push('/signin')}">สมัครสมาชิก</div>
+              <div style="color: #eb6957" @click="()=>{router.push('/signup')}">สมัครสมาชิก</div>
             </div>
 
 
@@ -127,8 +127,8 @@ export default {
   background-color: #eeeeee;
   top: 16%;
   border-radius: 0px 20px 20px 0px;
-  -webkit-box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 15px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
 }
 </style>

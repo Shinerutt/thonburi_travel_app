@@ -1,20 +1,66 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Home Page</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
+    <ion-content>
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Home Page</ion-title>
+          <ion-title size=""> แอพสถานที่เที่ยวฝั่งธนบุรี</ion-title>
         </ion-toolbar>
       </ion-header>
-      <H1>Hello world</H1>
-      <ion-button @click="getAPI()">Default</ion-button>
 
-      {{ user }}
+      <div id="categorybox">
+        <div
+          @click="clickActive('all')"
+          :class="{ active: active_btn == 'all' ? true : false }"
+        >
+          ทั้งหมด
+        </div>
+        <div
+          @click="clickActive('temple')"
+          :class="{ active: active_btn == 'temple' ? true : false }"
+        >
+          วัด
+        </div>
+        <div
+          @click="clickActive('landmark')"
+          :class="{ active: active_btn == 'landmark' ? true : false }"
+        >
+          ที่เที่ยว
+        </div>
+        <div
+          @click="clickActive('market')"
+          :class="{ active: active_btn == 'market' ? true : false }"
+        >
+          ตลาด
+        </div>
+        <div
+          @click="clickActive('restaurant')"
+          :class="{ active: active_btn == 'restaurant' ? true : false }"
+        >
+          ร้านอาหาร
+        </div>
+      </div>
+      <ion-toolbar>
+        <IonSearchbar
+          @keyup="searchAction"
+          v-model="search_text"
+        ></IonSearchbar>
+      </ion-toolbar>
+
+      <div>
+        <ion-card
+          @click="openDetail(item)"
+          v-for="item in lists_filter"
+          :key="item.id"
+        >
+          <img :src="item.img_places[0]" />
+          <ion-card-header>
+            <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
+            <ion-card-title>{{ item.name }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </div>
+      <!-- <ion-button @click="getAPI()">Default</ion-button> -->
+
       <!-- <ExploreContainer name="Tab 1 page" /> -->
     </ion-content>
   </ion-page>
@@ -25,26 +71,37 @@ import {
   IonPage,
   IonHeader,
   IonToolbar,
-  IonTitle,
+  IonSearchbar,
+  // IonTitle,
   IonContent,
 } from "@ionic/vue";
 // import ExploreContainer from "@/components/ExploreContainer.vue";
 
 import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
 import axios, { AxiosResponse } from "axios";
+const end_point = "http://127.0.0.1:3333";
 export default defineComponent({
   components: {
     // ExploreContainer,
     IonHeader,
     IonToolbar,
-    IonTitle,
+    // IonTitle,
     IonContent,
     IonPage,
+    IonSearchbar,
+  },
+  setup() {
+    const router = useRouter();
+    return { router };
   },
   data() {
     return {
+      active_btn: "",
+      search_text: "",
       user_id: "508e47fc-5612-482f-92df-2dc7adc4ea0a",
       lists: [],
+      lists_filter: [],
       user: {
         id: "",
         email: "",
@@ -61,11 +118,43 @@ export default defineComponent({
   created() {
     console.log("component working");
     // this.getAPI();
+    this.clickActive("all");
   },
   methods: {
+    openDetail(item: any) {
+      this.router.push(`/tabs/home/places/${item.id}`);
+    },
+    searchAction(event: any) {
+      this.lists_filter = this.lists.filter((item: any) => {
+        return new RegExp(event.target.value, "gi").test(item.name);
+      });
+    },
+    clickActive(btn_name: string) {
+      this.active_btn = btn_name;
+      this.get_places_by_cat(btn_name);
+    },
+    get_places_by_cat(cat: string) {
+      this.lists = [];
+      axios
+        .get(`${end_point}/places/${cat}`)
+        .then((res: AxiosResponse) => {
+          this.lists = res.data.map((item: any) => {
+            item.img_places = JSON.parse(item.img_places);
+            return item;
+          });
+
+          this.lists_filter = this.lists;
+        })
+        .catch((error) => {
+          console.log("catch", error);
+        })
+        .finally(() => {
+          console.log("finally");
+        });
+    },
     getAPI() {
       axios
-        .get(`http://127.0.0.1:3333/user/${this.user_id}`)
+        .get(`${end_point}/user/${this.user_id}`)
         .then((res: AxiosResponse) => {
           this.user = res.data;
         })
@@ -79,3 +168,22 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+#categorybox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+#categorybox > div {
+  /* background-color: aquamarine; */
+  width: 100%;
+  text-align: center;
+  /* border: solid 1px coral; */
+}
+
+.active {
+  color: #19b7cd;
+}
+</style>

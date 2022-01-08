@@ -28,6 +28,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/HomePage.vue')
       },
       {
+        path: 'home/places/:id',
+        component: () => import('@/views/DetailPlacesPage.vue')
+      },
+      {
         path: 'rec',
         component: () => import('@/views/RecommendPage.vue')
       },

@@ -70,7 +70,7 @@ export default defineComponent({
   },
   methods: {
     openmaps (lat:number,lng:number){
-      window.open(`http://www.google.com/maps/place/${lat}${lng}`, '_system', 'location=yes') 
+      window.open(`http://www.google.com/maps/place/${lat},${lng}`, '_system', 'location=yes') 
     },
 
     get_detail(places_id: any) {

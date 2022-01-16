@@ -7,30 +7,35 @@
         <div id="crical3"></div>
         <div id="crical4"></div>
         <div id="square">
-
-          <div id="box"> 
-             <H1 style="text-align: center;">เข้าสู่ระบบ</H1><br />
-           <input  class="input-custom" type="text" placeholder="อีเมล" ><br><br>
-           <input class="input-custom" type="text" placeholder="รหัสผ่าน"><br><br>
-            <button class="button-custom">เข้าสู่ระบบ</button><br><br>
+          <div id="box">
+            <H1 style="text-align: center">เข้าสู่ระบบ</H1><br />
+            <input
+              class="input-custom"
+              type="text"
+              placeholder="อีเมล"
+            /><br /><br />
+            <input
+              class="input-custom"
+              type="text"
+              placeholder="รหัสผ่าน"
+            /><br /><br />
+            <button class="button-custom">เข้าสู่ระบบ</button><br /><br />
             <!-- <ion-button  class="button-custom" color="secondary" >ตกลง</ion-button> -->
 
-            <div
-              style="
-                
-                margin-top: 10px;
-                
-              "
-            >
-              
-              <div class="I" style= " color: #eb6957" @click="()=>{router.push('/signup')}">สมัครสมาชิก</div>
+            <div style="margin-top: 10px">
+              <div
+                class="I"
+                style="color: #eb6957"
+                @click="
+                  () => {
+                    router.push('/signup');
+                  }
+                "
+              >
+                สมัครสมาชิก
+              </div>
             </div>
-
-
           </div>
-         
-
-
         </div>
       </div>
     </ion-content>
@@ -42,9 +47,7 @@ import { IonPage, IonContent } from "@ionic/vue";
 import { useRouter } from "vue-router";
 export default {
   components: { IonContent, IonPage },
-  methods: {
-  
-  },
+  methods: {},
   setup() {
     const router = useRouter();
     return { router };
@@ -53,28 +56,23 @@ export default {
 </script>
 
 <style scoped>
-
-.input-custom{
+.input-custom {
   width: 100%;
-    height: 50px;
-    color: #F49284;
-    border:none; 
-    -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  height: 50px;
+  color: #f49284;
+  border: none;
+  -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
-
-
-
-
 }
 .button-custom {
-  margin-top:  25px;
+  margin-top: 25px;
   margin-bottom: 25px;
-  background-color: #19B7CD;
+  background-color: #19b7cd;
   width: 100%;
   height: 40px;
 }
-#box{
+#box {
   margin-left: 50px;
   margin-top: 50px;
   margin-right: 50px;
@@ -131,7 +129,7 @@ export default {
   -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
 }
-.I{
+.I {
   text-align: right;
 }
 </style>

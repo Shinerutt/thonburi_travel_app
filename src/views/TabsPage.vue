@@ -10,17 +10,17 @@
           
         <ion-tab-button tab="rec" href="/tabs/rec">
           <ion-icon :icon="readerOutline" />
-          <ion-label>Recommend</ion-label>
+          <ion-label>แนะนำ</ion-label>
         </ion-tab-button>
         
         <ion-tab-button tab="video" href="/tabs/video">
           <ion-icon :icon="caretForwardCircleOutline" />
-          <ion-label>Video</ion-label>
+          <ion-label>วิดีโอ</ion-label>
           
         </ion-tab-button>
          <ion-tab-button tab="trips" href="/tabs/trips">
           <ion-icon :icon="trainOutline" />
-          <ion-label>Trips</ion-label>
+          <ion-label>ทริป</ion-label>
           
         </ion-tab-button>
       </ion-tab-bar>

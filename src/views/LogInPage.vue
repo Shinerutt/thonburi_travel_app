@@ -9,21 +9,21 @@
         <div id="square">
 
           <div id="box"> 
-             <H1 >เข้าสู่ระบบ</H1><br />
-           <input  class="input-custom" type="text" placeholder="เข้าสู่ระบบ"><br><br>
+             <H1 style="text-align: center;">เข้าสู่ระบบ</H1><br />
+           <input  class="input-custom" type="text" placeholder="อีเมล" ><br><br>
            <input class="input-custom" type="text" placeholder="รหัสผ่าน"><br><br>
             <button class="button-custom">เข้าสู่ระบบ</button><br><br>
             <!-- <ion-button  class="button-custom" color="secondary" >ตกลง</ion-button> -->
 
             <div
               style="
-                display: flex;
-                justify-content: space-between;
+                
                 margin-top: 10px;
+                
               "
             >
-              <div>ต้องการสมัครสมาชิก</div>
-              <div style="color: #eb6957" @click="()=>{router.push('/signup')}">สมัครสมาชิก</div>
+              
+              <div class="I" style= " color: #eb6957" @click="()=>{router.push('/signup')}">สมัครสมาชิก</div>
             </div>
 
 
@@ -130,5 +130,8 @@ export default {
   -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+}
+.I{
+  text-align: right;
 }
 </style>

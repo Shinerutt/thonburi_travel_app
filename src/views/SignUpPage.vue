@@ -7,8 +7,8 @@
         <div id="crical3"></div>
         <div id="crical4"></div>
         <div id="square">
-          <div id="box">
-            <h1>สมัครสมาชิก</h1>
+          <div id="box" >
+            <h1 style="text-align: center;">สมัครสมาชิก</h1>
             <br />
             <input
               v-model="record.email"
@@ -34,7 +34,7 @@
               id="nickname"
               placeholder="ชื่อเล่น"
             />
-            <button @click="signup" class="button-custom">ตกลง</button
+            <button @click="signup" class="button-custom">สมัครสมาชิก</button
             ><br /><br />
             <!-- <ion-button  class="button-custom" color="secondary" >ตกลง</ion-button> -->
 
@@ -45,7 +45,6 @@
                 margin-top: 10px;
               "
             >
-              <div>พร้อมใช้งานแล้ว</div>
               <div
                 style="color: #eb6957"
                 @click="
@@ -55,6 +54,16 @@
                 "
               >
                 เข้าสู่ระบบ
+              </div>
+              <div
+                style="color: #ecb7b0"
+                @click="
+                  () => {
+                    router.push('/login');
+                  }
+                "
+              >
+                ยกเลิก
               </div>
             </div>
             <!-- <ion-button class="button-custom" color="secondary">เข้าสู่ระบบ</ion-button> -->
@@ -81,17 +90,17 @@ export default defineComponent({
           ...this.record,
         })
         .then((res) => {
-          if(res.data.status == true){            
-            this.router.push('/login')
-          }else{
-            alert("Register Error!!!")
+          if (res.data.status == true) {
+            this.router.push("/login");
+          } else {
+            alert("Register Error!!!");
           }
         })
         .catch((error) => {
           console.log(error);
-          
-          alert("Network Error!!!")
-        })
+
+          alert("Network Error!!!");
+        });
     },
   },
   setup() {

@@ -22,16 +22,24 @@ import '@ionic/vue/css/display.css';
 import  VueGoogleMaps from '@fawmi/vue-google-maps'
 /* Theme variables */
 import './theme/variables.css';
+import YouTube from "vue3-youtube";
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(router)
+  .use(router) 
+ 
   .use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyBpldJmmwqZcJszmiKkddqzzPKCpld3qnM',
     },
 })
+app.component("YouTube",YouTube)
 
 router.isReady().then(() => {
   app.mount('#app');
 });
+const tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+const firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);

@@ -3,7 +3,7 @@
     <ion-content>
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size=""> แอพสถานที่เที่ยวฝั่งธนบุรี</ion-title>
+          <ion-title size="small"> แอปสถานที่เที่ยวฝั่งธนบุรี</ion-title>
         </ion-toolbar>
       </ion-header>
 
@@ -46,16 +46,16 @@
         ></IonSearchbar>
       </ion-toolbar>
 
-      <div>
-        <ion-card
+      <div >
+        <ion-card 
           @click="openDetail(item)"
           v-for="item in lists_filter"
           :key="item.id"
         >
-          <img :src="item.img_places[0]" />
+          <img :src="item.img_places[0]"  />
           <ion-card-header>
             <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
-            <ion-card-title>{{ item.name }}</ion-card-title>
+            <ion-card-title >{{ item.name }}</ion-card-title>
           </ion-card-header>
         </ion-card>
       </div>
@@ -186,4 +186,5 @@ export default defineComponent({
 .active {
   color: #19b7cd;
 }
+
 </style>

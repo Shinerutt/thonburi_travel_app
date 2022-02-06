@@ -7,6 +7,11 @@
           <ion-icon :icon="homeOutline" />
           <ion-label>หน้าหลัก</ion-label>
         </ion-tab-button>
+
+        <ion-tab-button tab="map" href="/tabs/map">
+          <ion-icon :icon="map" />
+          <ion-label>แผนที่</ion-label>
+        </ion-tab-button>
           
         <ion-tab-button tab="rec" href="/tabs/rec">
           <ion-icon :icon="readerOutline" />
@@ -30,7 +35,7 @@
 
 <script lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { homeOutline, readerOutline, triangle,airplaneOutline ,alarmOutline,caretForwardCircleOutline,trainOutline} from 'ionicons/icons';
+import { homeOutline, readerOutline, triangle,airplaneOutline ,alarmOutline,caretForwardCircleOutline,trainOutline,map} from 'ionicons/icons';
 
 // <ion-icon name="home-outline"></ion-icon> home
 // <ion-icon name="reader-outline"></ion-icon> Recommend
@@ -44,7 +49,7 @@ export default {
       homeOutline, 
       triangle,
       airplaneOutline,
-      alarmOutline,caretForwardCircleOutline,readerOutline,trainOutline
+      alarmOutline,caretForwardCircleOutline,readerOutline,trainOutline,map
 
     }
   }

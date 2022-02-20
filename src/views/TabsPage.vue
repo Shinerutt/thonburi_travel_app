@@ -28,6 +28,11 @@
           <ion-label>ทริป</ion-label>
           
         </ion-tab-button>
+        <ion-tab-button tab="profile" href="/tabs/profile">
+          <ion-icon :icon="trainOutline" />
+          <ion-label>โปรไฟล์</ion-label>
+          
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>

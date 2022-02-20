@@ -46,6 +46,9 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'trips',
         component: () => import('@/views/TripsPage.vue')
+      },{
+        path: 'profile',
+        component: () => import('@/views/ProfilePage.vue')
       }
     ]
   }

@@ -10,16 +10,18 @@
           <div id="box">
             <H1 style="text-align: center">เข้าสู่ระบบ</H1><br />
             <input
+               v-model="email" 
               class="input-custom"
               type="text"
               placeholder="อีเมล"
             /><br /><br />
             <input
+              v-model="password"
               class="input-custom"
-              type="text"
+              type="password"
               placeholder="รหัสผ่าน"
             /><br /><br />
-            <button class="button-custom">เข้าสู่ระบบ</button><br /><br />
+            <button class="button-custom" @click="login">เข้าสู่ระบบ</button><br /><br />
             <!-- <ion-button  class="button-custom" color="secondary" >ตกลง</ion-button> -->
 
             <div style="margin-top: 10px">
@@ -44,15 +46,43 @@
 
 <script lang="ts">
 import { IonPage, IonContent } from "@ionic/vue";
+import axios from "axios";
 import { useRouter } from "vue-router";
-export default {
+import { defineComponent } from "vue";
+const endPoint = "http://127.0.0.1:3333";
+export default defineComponent ({
   components: { IonContent, IonPage },
-  methods: {},
+  data(){
+    return {
+      email : "",
+      password : ""
+    }
+  },
+  methods: {
+    login(){
+      axios.post(`${endPoint}/login`,{
+        email : this.email,
+        password : this.password
+      })
+      .then((res)=>{  
+        if(res.status==200){
+          if(res.data.status==true){
+            console.log(res.data.data);
+            
+          }else{
+            alert(res.data.message)
+          }
+        }
+
+      })
+    }
+  },
   setup() {
     const router = useRouter();
     return { router };
   },
-};
+
+});
 </script>
 
 <style scoped>

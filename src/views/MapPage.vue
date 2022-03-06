@@ -13,13 +13,20 @@
           map-type-id="terrain"
         >
           <g-map-marker
+            :icon="{ url: require('../../public/assets/icon/imhereicon.png')}"
+            :position="{ lat: center.lat, lng: center.lng }"
+          ></g-map-marker>
+          <g-map-marker
             @click="openWindow(item)"
             v-for="item in lists_filter"
             :key="item.id"
             :position="{ lat: item.lat, lng: item.lng }"
           >
-            <g-map-info-window :opened="markerId == item.id" @click="openDetail(item.id)">
-              <div style="color:#000000">{{item.name}}</div>
+            <g-map-info-window
+              :opened="markerId == item.id"
+              @click="openDetail(item.id)"
+            >
+              <div style="color: #000000">{{ item.name }}</div>
             </g-map-info-window>
           </g-map-marker>
         </g-map-map>
@@ -78,8 +85,8 @@ export default defineComponent({
     this.get_places_by_cat("all");
   },
   methods: {
-    openDetail(id:string){
-        this.router.push(`/tabs/home/places/${id}`);
+    openDetail(id: string) {
+      this.router.push(`/tabs/home/places/${id}`);
     },
     getLocation() {
       if (navigator.geolocation) {

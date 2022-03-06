@@ -54,8 +54,8 @@ export default defineComponent ({
   components: { IonContent, IonPage },
   data(){
     return {
-      email : "",
-      password : ""
+      email : "abc98@hotmail.com",
+      password : "123456"
     }
   },
   methods: {
@@ -68,7 +68,8 @@ export default defineComponent ({
         if(res.status==200){
           if(res.data.status==true){
             console.log(res.data.data);
-            
+            localStorage.setItem("userData",JSON.stringify(res.data.data))
+            this.router.push("/tabs/home");
           }else{
             alert(res.data.message)
           }

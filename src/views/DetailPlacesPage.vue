@@ -28,9 +28,61 @@
         /></g-map-map>
       </div>
       <div class="icon-map">
-       <ion-button @click="openmaps(record.lat,record.lng)" expand="block" color="secondary">คลิกตรงนี้เพื่อนำทาง</ion-button></div>
+        <ion-button
+          @click="openmaps(record.lat, record.lng)"
+          expand="block"
+          color="secondary"
+          >คลิกตรงนี้เพื่อนำทาง</ion-button
+        >
+      </div>
+      <hr />
+      <div v-if="isLogin()">
+        <vue3-star-ratings
+          v-model="rating"
+          inactiveColor="#bfbfbf"
+          :showControl="true"
+          :starSize="30"
+          :step="0.5"
+        />
+        <div>
+          <div
+            v-for="(comments_item, index) in comments"
+            :key="index"
+            class="comment-item"
+          >
+            <div>
+              <ion-avatar slot="start">
+                <img :src="comments_item.img" />
+              </ion-avatar>
+            </div>
+            <div class="comment-text">
+              <div style="font-weight: 500">@{{ comments_item.email }}</div>
+              <br />
+              {{ comments_item.comment }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <ion-fab
+        v-if="isLogin()"
+        vertical="center"
+        horizontal="end"
+        slot="fixed"
+        class="btn-comment"
+      >
+        <ion-fab-button @click="openComment">
+          <ion-icon :icon="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
       <!-- {{record.img_places[0]}} -->
     </ion-content>
+    <ion-modal
+      :is-open="box_comment_open"
+       :breakpoints="[0.1, 0.5, 1]"
+        :initialBreakpoint="0.5"
+    >
+      <ion-content>Modal Content</ion-content>
+    </ion-modal>
   </ion-page>
 </template>
 
@@ -41,19 +93,51 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  IonFab,
+  IonFabButton,
+  IonIcon,IonModal
 } from "@ionic/vue";
+import { add } from "ionicons/icons";
 
 import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
 const end_point = "http://127.0.0.1:3333";
+import vue3StarRatings from "vue3-star-ratings";
 
 export default defineComponent({
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: {
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonPage,
+    vue3StarRatings,
+    IonFab,
+    IonFabButton,
+    IonIcon,IonModal
+  },
   created() {
     this.get_detail(this.$route.params.id);
+    console.log(new Date().getTime());
   },
   data() {
     return {
+      box_comment_open:false,
+      rating: 1,
+      comments: [
+        {
+          email: "abc@gmail.com",
+          img: "https://ionicframework.com/docs/demos/api/list/avatar-luke.png",
+          comment:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        },
+        {
+          email: "abc@gmail.com",
+          img: "https://ionicframework.com/docs/demos/api/list/avatar-rey.png",
+          comment:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        },
+      ],
       loadding: true,
       record: {
         id: "",
@@ -69,8 +153,12 @@ export default defineComponent({
     };
   },
   methods: {
-    openmaps (lat:number,lng:number){
-      window.open(`http://www.google.com/maps/place/${lat},${lng}`, '_system', 'location=yes') 
+    openmaps(lat: number, lng: number) {
+      window.open(
+        `http://www.google.com/maps/place/${lat},${lng}`,
+        "_system",
+        "location=yes"
+      );
     },
 
     get_detail(places_id: any) {
@@ -85,6 +173,22 @@ export default defineComponent({
 
       //http://127.0.0.1:3333/view/places/{{places_id}}
     },
+    isLogin() {
+      var userData = localStorage.getItem("userData");
+      if (userData) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    openComment(){
+      this.box_comment_open = true
+    }
+  },
+  setup() {
+    return {
+      add,
+    };
   },
 });
 </script>
@@ -97,9 +201,24 @@ export default defineComponent({
   display: flex;
   justify-content: center;
 }
-.icon-map{
+.icon-map {
   margin-top: 5%;
   padding-left: 60px;
   padding-right: 60px;
+}
+.comment-item {
+  display: flex;
+  border-bottom: 0.5px solid #838181;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.comment-text {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.btn-comment {
+  top: 92%;
 }
 </style>

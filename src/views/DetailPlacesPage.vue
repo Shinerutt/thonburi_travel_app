@@ -37,28 +37,21 @@
       </div>
       <hr />
       <div v-if="isLogin()">
-        <vue3-star-ratings
-          v-model="rating"
-          inactiveColor="#bfbfbf"
-          :showControl="true"
-          :starSize="30"
-          :step="0.5"
-        />
         <div>
           <div
-            v-for="(comments_item, index) in comments"
+            v-for="(comments_item , index) in record.review"
             :key="index"
             class="comment-item"
           >
             <div>
               <ion-avatar slot="start">
-                <img :src="comments_item.img" />
+                <img :src="comments_item.user.img_profile" />
               </ion-avatar>
             </div>
             <div class="comment-text">
-              <div style="font-weight: 500">@{{ comments_item.email }}</div>
+              <div style="font-weight: 500">@{{ comments_item.user.email }}</div>
               <br />
-              {{ comments_item.comment }}
+              {{ comments_item.content }}
             </div>
           </div>
         </div>
@@ -78,10 +71,27 @@
     </ion-content>
     <ion-modal
       :is-open="box_comment_open"
-       :breakpoints="[0.1, 0.5, 1]"
-        :initialBreakpoint="0.5"
+      :breakpoints="[0.1, 0.5, 1]"
+      :initialBreakpoint="1"
     >
-      <ion-content>Modal Content</ion-content>
+      <ion-content
+        ><ion-item>
+          <ion-label position="floating">แสดงความคิดเห็น</ion-label>
+          <ion-textarea
+            :rows="10"
+            placeholder="แสดงความคิดเห็น"
+            v-model="comment_text"
+          ></ion-textarea>
+        </ion-item>
+        <vue3-star-ratings
+          v-model="rating"
+          inactiveColor="#bfbfbf"
+          :showControl="true"
+          :starSize="30"
+          :step="0.5"
+        />
+        <ion-button expand="block" @click="sent_comment">ส่ง</ion-button>
+      </ion-content>
     </ion-modal>
   </ion-page>
 </template>
@@ -95,14 +105,16 @@ import {
   IonContent,
   IonFab,
   IonFabButton,
-  IonIcon,IonModal
+  IonIcon,
+  IonModal,
 } from "@ionic/vue";
 import { add } from "ionicons/icons";
-
+import { IonItem, IonLabel, IonTextarea } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
 const end_point = "http://127.0.0.1:3333";
 import vue3StarRatings from "vue3-star-ratings";
+import { IonButton } from "@ionic/vue";
 
 export default defineComponent({
   components: {
@@ -114,7 +126,12 @@ export default defineComponent({
     vue3StarRatings,
     IonFab,
     IonFabButton,
-    IonIcon,IonModal
+    IonIcon,
+    IonModal,
+    IonItem,
+    IonLabel,
+    IonTextarea,
+    IonButton,
   },
   created() {
     this.get_detail(this.$route.params.id);
@@ -122,7 +139,8 @@ export default defineComponent({
   },
   data() {
     return {
-      box_comment_open:false,
+      comment_text: "",
+      box_comment_open: false,
       rating: 1,
       comments: [
         {
@@ -140,6 +158,7 @@ export default defineComponent({
       ],
       loadding: true,
       record: {
+
         id: "",
         name: "",
         lat: 0,
@@ -149,10 +168,39 @@ export default defineComponent({
         category: "",
         created_at: "",
         updated_at: "",
+        review:[]
       },
     };
   },
   methods: {
+    sent_comment() {
+      var userData = localStorage.getItem("userData");
+      if(this.comment_text==""){
+        this.box_comment_open = false;
+        return false
+      }
+      if (userData) {
+        var obj_userData = JSON.parse(userData);
+        var record = {
+          places_id: this.$route.params.id,
+          user_id: obj_userData.id,
+          content: this.comment_text,
+          rate: this.rating,
+        };
+       axios
+        .post(`${end_point}/comment/save`,{
+          places_id: this.$route.params.id,
+          user_id: obj_userData.id,
+          content: this.comment_text,
+          rate: this.rating,
+        })
+        .then((res: AxiosResponse) => {
+         this.get_detail(this.$route.params.id);
+        }),
+        this.box_comment_open = false;
+        this.comment_text = "";
+      }
+    },
     openmaps(lat: number, lng: number) {
       window.open(
         `http://www.google.com/maps/place/${lat},${lng}`,
@@ -181,9 +229,9 @@ export default defineComponent({
         return false;
       }
     },
-    openComment(){
-      this.box_comment_open = true
-    }
+    openComment() {
+      this.box_comment_open = true;
+    },
   },
   setup() {
     return {

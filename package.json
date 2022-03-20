@@ -23,6 +23,7 @@
     "core-js": "^3.6.5",
     "stars-rating-component-vue": "^1.2.0",
     "swiper": "^7.4.1",
+    "uuidv4": "^6.2.12",
     "vue": "^3.2.21",
     "vue-router": "^4.0.12",
     "vue-star-rating": "^2.1.0",

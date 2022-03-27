@@ -114,6 +114,7 @@ import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
 const end_point = "http://127.0.0.1:3333";
 import vue3StarRatings from "vue3-star-ratings";
+import { useRouter } from "vue-router";
 import { IonButton } from "@ionic/vue";
 
 export default defineComponent({
@@ -172,6 +173,7 @@ export default defineComponent({
       },
     };
   },
+  
   methods: {
     sent_comment() {
       var userData = localStorage.getItem("userData");

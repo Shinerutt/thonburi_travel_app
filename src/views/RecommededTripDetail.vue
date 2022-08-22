@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-     <div v-html="record.detail.content" style="padding:5px"></div>
+     <div v-for="(item,index) in record.detail" v-html="item.content" :key="index" style="padding:10px"></div>
     </ion-content>
   </ion-page>
 </template>
@@ -29,9 +29,9 @@ export default defineComponent ({
         img_cover:"",
         created_at: "",
         updated_at: "",
-        detail:{
+        detail:[{
           content:"<h1>555</h1>"
-        }
+        }]
 
 
         

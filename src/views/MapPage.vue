@@ -3,7 +3,7 @@
     <ion-content>
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="small"> แผนที่</ion-title>
+          <ion-title size="midium"> แผนที่</ion-title>
         </ion-toolbar>
       </ion-header>
       <div>

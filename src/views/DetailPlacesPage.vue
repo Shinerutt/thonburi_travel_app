@@ -2,13 +2,13 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>{{ record.name }}</ion-title>
+        <ion-title size="small">{{ record.name }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">{{ record.name }}</ion-title>
+          <ion-title size="midium" >{{ record.name }}</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-slides v-if="loadding == false">

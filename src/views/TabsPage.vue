@@ -29,7 +29,7 @@
           
         </ion-tab-button>
         <ion-tab-button tab="profile" href="/tabs/profile">
-          <ion-icon :icon="trainOutline" />
+          <ion-icon :icon="personOutline" />
           <ion-label>โปรไฟล์</ion-label>
           
         </ion-tab-button>
@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { homeOutline, readerOutline, triangle,airplaneOutline ,alarmOutline,caretForwardCircleOutline,trainOutline,map} from 'ionicons/icons';
+import { homeOutline, readerOutline, triangle,airplaneOutline ,alarmOutline,caretForwardCircleOutline,trainOutline,map,personOutline} from 'ionicons/icons';
 
 // <ion-icon name="home-outline"></ion-icon> home
 // <ion-icon name="reader-outline"></ion-icon> Recommend
@@ -54,7 +54,7 @@ export default {
       homeOutline, 
       triangle,
       airplaneOutline,
-      alarmOutline,caretForwardCircleOutline,readerOutline,trainOutline,map
+      alarmOutline,caretForwardCircleOutline,readerOutline,trainOutline,map,personOutline
 
     }
   }

@@ -24,6 +24,8 @@ import  VueGoogleMaps from '@fawmi/vue-google-maps'
 import './theme/variables.css';
 import YouTube from "vue3-youtube";
 
+import firebase from "firebase";
+
 const app = createApp(App)
   .use(IonicVue)
   .use(router) 
@@ -36,6 +38,8 @@ const app = createApp(App)
 app.component("YouTube",YouTube)
 
 router.isReady().then(() => {
+  
+  
   app.mount('#app');
 });
 const tag = document.createElement('script');

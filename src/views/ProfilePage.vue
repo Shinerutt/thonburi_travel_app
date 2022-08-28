@@ -6,6 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
+    <!-- {{isLogin}} -->
       <div v-if="isLogin == true">
         <div style="margin: 20px; text-align: center">
           <img
@@ -26,31 +27,60 @@
             @change="previewImage"
             accept="image/*"
           />
-          
         </div>
         <div>
           <ion-item>
             <ion-label position="stacked">อีเมล</ion-label>
-            <ion-input  @ionInput="userData.email = $event.target.value;" :value="userData.email"></ion-input>
+            <ion-input
+              @ionInput="userData.email = $event.target.value"
+              :value="userData.email"
+            ></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked" >ชื่อจริง</ion-label>
-            <ion-input @ionInput="userData.first_name = $event.target.value;" :value="userData.first_name"></ion-input>
+            <ion-label position="stacked">ชื่อจริง</ion-label>
+            <ion-input
+              @ionInput="userData.first_name = $event.target.value"
+              :value="userData.first_name"
+            ></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">นามสกุล</ion-label>
-            <ion-input @ionInput="userData.last_name = $event.target.value;" :value="userData.last_name"></ion-input>
+            <ion-input
+              @ionInput="userData.last_name = $event.target.value"
+              :value="userData.last_name"
+            ></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">ชื่อเล่น</ion-label>
-            <ion-input @ionInput="userData.nick_name = $event.target.value;" :value="userData.nick_name"></ion-input>
+            <ion-input
+              @ionInput="userData.nick_name = $event.target.value"
+              :value="userData.nick_name"
+            ></ion-input>
           </ion-item>
 
-          <ion-button expand="block" style="margin-top:20px" @click="update_profile">บันทึก</ion-button>
+          <!-- <ion-item>
+            <ion-label position="stacked">รหัสผ่าน</ion-label>
+            <ion-input
+              @ionInput="userData.password = $event.target.value"
+              :value="userData.password" type="password"
+            ></ion-input>
+          </ion-item> -->
 
+          <ion-button
+            expand="block"
+            style="margin-top: 20px"
+            @click="update_profile"
+            >บันทึก</ion-button
+          >
+          <ion-button
+            expand="block"
+            style="margin-top: 20px" color="danger"
+            @click="logout"
+            >ออกจากระบบ</ion-button
+          >
         </div>
       </div>
       <div v-else>
@@ -69,13 +99,13 @@ import {
   IonContent,
   IonItem,
   IonInput,
-  IonLabel
+  IonLabel,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import firebase from "firebase";
-const end_point = "http://127.0.0.1:3333";
+const end_point = "http://128.199.103.191:3333";
 const firebaseConfig = {
   apiKey: "AIzaSyBE_B4EB4M_-7GHM6um6yIn7xjrRWarMiU",
   authDomain: "shinerut-3dfa4.firebaseapp.com",
@@ -112,6 +142,7 @@ export default defineComponent({
         first_name: "",
         last_name: "",
         nick_name: "",
+        // password:"",
         img_profile: "",
         created_at: "",
         updated_at: "",
@@ -158,16 +189,13 @@ export default defineComponent({
         }
       );
     },
-    update_profile(){
+    update_profile() {
       axios
-        .put(
-          `${end_point}/user/${this.userData.id}`,
-          this.userData
-        )
+        .put(`${end_point}/user/${this.userData.id}`, this.userData)
         .then((res) => {
           if (res.data.status == true) {
-            localStorage.setItem("userData",JSON.stringify(res.data.data));
-            this.userData = res.data.data
+            localStorage.setItem("userData", JSON.stringify(res.data.data));
+            this.userData = res.data.data;
             alert("Upadte  Proflie Success");
           } else {
             alert(res.data.message);
@@ -177,7 +205,10 @@ export default defineComponent({
           alert("Can not Upadte Profile.");
         });
       console.log(JSON.stringify(this.userData));
-      
+    },
+    logout() {
+      localStorage.removeItem("userData");
+      this.router.push("/login");
     },
   },
   setup() {

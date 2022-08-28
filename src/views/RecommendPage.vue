@@ -33,7 +33,7 @@
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 
 import axios, { AxiosResponse } from "axios";
-const end_point = "http://127.0.0.1:3333";
+const end_point = "http://128.199.103.191:3333";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
@@ -75,7 +75,7 @@ export default defineComponent( {
           this.list = res.data;
         });
 
-      //http://127.0.0.1:3333/view/places/{{places_id}}
+      //http://128.199.103.191:3333/view/places/{{places_id}}
     },
   },
 })

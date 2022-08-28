@@ -112,7 +112,7 @@ import { add } from "ionicons/icons";
 import { IonItem, IonLabel, IonTextarea } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
-const end_point = "http://127.0.0.1:3333";
+const end_point = "http://128.199.103.191:3333";
 import vue3StarRatings from "vue3-star-ratings";
 import { useRouter } from "vue-router";
 import { IonButton } from "@ionic/vue";
@@ -221,7 +221,7 @@ export default defineComponent({
           this.loadding = false;
         });
 
-      //http://127.0.0.1:3333/view/places/{{places_id}}
+      //http://128.199.103.191:3333/view/places/{{places_id}}
     },
     isLogin() {
       var userData = localStorage.getItem("userData");

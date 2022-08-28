@@ -42,7 +42,7 @@ import {
 import { defineComponent } from "vue";
 
 import axios, { AxiosResponse } from "axios";
-const end_point = "http://127.0.0.1:3333";
+const end_point = "http://128.199.103.191:3333";
 
 export default defineComponent({
   data() {

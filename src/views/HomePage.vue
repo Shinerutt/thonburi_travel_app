@@ -158,7 +158,7 @@ export default defineComponent({
         .then((res: AxiosResponse) => {
           this.user = res.data;
         })
-        .catch((error) => {
+        .catch(() => {
           console.log("catch");
         })
         .finally(() => {

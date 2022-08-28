@@ -96,10 +96,8 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonContent,
-  IonItem,
-  IonInput,
-  IonLabel,
+  IonContent
+  
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";

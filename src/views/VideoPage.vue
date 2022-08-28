@@ -80,7 +80,7 @@ export default defineComponent({
             this.loading = true;
           }, 500);
         })
-        .catch((error) => {
+        .catch(() => {
           console.log("catch");
         })
         .finally(() => {

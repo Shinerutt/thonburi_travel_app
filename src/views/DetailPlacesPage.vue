@@ -114,7 +114,6 @@ import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
 const end_point = "http://128.199.103.191:3333";
 import vue3StarRatings from "vue3-star-ratings";
-import { useRouter } from "vue-router";
 import { IonButton } from "@ionic/vue";
 
 export default defineComponent({
@@ -183,12 +182,12 @@ export default defineComponent({
       }
       if (userData) {
         var obj_userData = JSON.parse(userData);
-        var record = {
-          places_id: this.$route.params.id,
-          user_id: obj_userData.id,
-          content: this.comment_text,
-          rate: this.rating,
-        };
+        // var record = {
+        //   places_id: this.$route.params.id,
+        //   user_id: obj_userData.id,
+        //   content: this.comment_text,
+        //   rate: this.rating,
+        // };
        axios
         .post(`${end_point}/comment/save`,{
           places_id: this.$route.params.id,
@@ -196,7 +195,7 @@ export default defineComponent({
           content: this.comment_text,
           rate: this.rating,
         })
-        .then((res: AxiosResponse) => {
+        .then(() => {
          this.get_detail(this.$route.params.id);
         }),
         this.box_comment_open = false;

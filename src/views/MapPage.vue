@@ -40,7 +40,7 @@ import {
   IonPage,
   IonHeader,
   IonToolbar,
-  IonSearchbar,
+  
   // IonTitle,
   IonContent,
 } from "@ionic/vue";

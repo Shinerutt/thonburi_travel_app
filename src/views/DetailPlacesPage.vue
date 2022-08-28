@@ -112,7 +112,7 @@ import { add } from "ionicons/icons";
 import { IonItem, IonLabel, IonTextarea } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
-const end_point = "http://128.199.103.191:3333";
+const end_point = "https://api.system-searchpet.com";
 import vue3StarRatings from "vue3-star-ratings";
 import { IonButton } from "@ionic/vue";
 
@@ -220,7 +220,7 @@ export default defineComponent({
           this.loadding = false;
         });
 
-      //http://128.199.103.191:3333/view/places/{{places_id}}
+      //https://api.system-searchpet.com/view/places/{{places_id}}
     },
     isLogin() {
       var userData = localStorage.getItem("userData");

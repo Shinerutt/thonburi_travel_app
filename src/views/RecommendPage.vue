@@ -33,7 +33,7 @@
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 
 import axios, { AxiosResponse } from "axios";
-const end_point = "http://128.199.103.191:3333";
+const end_point = "https://api.system-searchpet.com";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
@@ -75,7 +75,7 @@ export default defineComponent( {
           this.list = res.data;
         });
 
-      //http://128.199.103.191:3333/view/places/{{places_id}}
+      //https://api.system-searchpet.com/view/places/{{places_id}}
     },
   },
 })

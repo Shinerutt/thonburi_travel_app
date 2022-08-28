@@ -23,9 +23,6 @@ import  VueGoogleMaps from '@fawmi/vue-google-maps'
 /* Theme variables */
 import './theme/variables.css';
 import YouTube from "vue3-youtube";
-
-import firebase from "firebase";
-
 const app = createApp(App)
   .use(IonicVue)
   .use(router) 

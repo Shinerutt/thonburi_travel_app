@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-    <!-- {{isLogin}} -->
+      <!-- {{isLogin}} -->
       <div v-if="isLogin == true">
         <div style="margin: 20px; text-align: center">
           <img
@@ -33,6 +33,7 @@
           <ion-item>
             <ion-label position="stacked">อีเมล</ion-label>
             <ion-input
+              type="text"
               @ionInput="userData.email = $event.target.value"
               :value="userData.email"
             ></ion-input>
@@ -41,6 +42,7 @@
           <ion-item>
             <ion-label position="stacked">ชื่อจริง</ion-label>
             <ion-input
+              type="text"
               @ionInput="userData.first_name = $event.target.value"
               :value="userData.first_name"
             ></ion-input>
@@ -49,6 +51,7 @@
           <ion-item>
             <ion-label position="stacked">นามสกุล</ion-label>
             <ion-input
+              type="text"
               @ionInput="userData.last_name = $event.target.value"
               :value="userData.last_name"
             ></ion-input>
@@ -57,6 +60,7 @@
           <ion-item>
             <ion-label position="stacked">ชื่อเล่น</ion-label>
             <ion-input
+              type="text"
               @ionInput="userData.nick_name = $event.target.value"
               :value="userData.nick_name"
             ></ion-input>
@@ -78,7 +82,8 @@
           >
           <ion-button
             expand="block"
-            style="margin-top: 20px" color="danger"
+            style="margin-top: 20px"
+            color="danger"
             @click="logout"
             >ออกจากระบบ</ion-button
           >
@@ -97,8 +102,7 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonContent
-  
+  IonContent,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";

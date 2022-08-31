@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-      
+        <ion-title style="font-size:large">แอปสถานที่เที่ยวฝั่งธนบุรี</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">

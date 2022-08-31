@@ -28,37 +28,43 @@
             accept="image/*"
           />
         </div>
+        <!-- <input
+               v-model="email" 
+              class="input-custom"
+              type="text"
+              placeholder="อีเมล"
+            /><br /><br /> -->
         <div>
           <ion-item>
             <ion-label position="stacked">อีเมล</ion-label>
-            <ion-input
+            <input
               @ionInput="userData.email = $event.target.value"
               :value="userData.email"
-            ></ion-input>
+            />
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">ชื่อจริง</ion-label>
-            <ion-input
+            <input
               @ionInput="userData.first_name = $event.target.value"
               :value="userData.first_name"
-            ></ion-input>
+            />
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">นามสกุล</ion-label>
-            <ion-input
+            <input
               @ionInput="userData.last_name = $event.target.value"
               :value="userData.last_name"
-            ></ion-input>
+            />
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">ชื่อเล่น</ion-label>
-            <ion-input
+            <input
               @ionInput="userData.nick_name = $event.target.value"
               :value="userData.nick_name"
-            ></ion-input>
+            />
           </ion-item>
 
           <!-- <ion-item>

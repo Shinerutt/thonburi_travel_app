@@ -103,7 +103,7 @@ import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import firebase from "firebase";
-const end_point = "http://128.199.103.191:3333";
+const end_point = "https://api.system-searchpet.com";
 const firebaseConfig = {
   apiKey: "AIzaSyBE_B4EB4M_-7GHM6um6yIn7xjrRWarMiU",
   authDomain: "shinerut-3dfa4.firebaseapp.com",

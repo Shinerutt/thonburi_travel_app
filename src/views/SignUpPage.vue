@@ -16,7 +16,7 @@
               type="text"
               name="email"
               id="email"
-              placeholder="ชื่อผู้ใช้ abc@gamil.com"
+              placeholder="ชื่อผู้ใช้ shinerut1215 "
             />
             <input
               v-model="record.password"
@@ -46,7 +46,7 @@
               "
             >
               <div
-                style="color: #eb6957"
+                style="color: #19b7cd"
                 @click="
                   () => {
                     router.push('/login');

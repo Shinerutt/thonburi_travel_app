@@ -30,7 +30,24 @@
         </div>
         <!--  -->
         <div>
-          <ion-item>
+
+          <input
+               v-model="userData.email" 
+              class="input-custom"
+              type="text"
+            /><br />
+          <input
+               v-model="userData.first_name" 
+              class="input-custom"
+              type="text"
+            /><br />
+          <input
+               v-model="userData.last_name" 
+              class="input-custom"
+              type="text"
+            /><br />
+          
+          <!-- <ion-item>
             <ion-label position="stacked">อีเมล</ion-label>
             <ion-input
               type="text"
@@ -64,7 +81,7 @@
               @ionInput="userData.nick_name = $event.target.value"
               :value="userData.nick_name"
             ></ion-input>
-          </ion-item>
+          </ion-item> -->
 
           <!-- <ion-item>
             <ion-label position="stacked">รหัสผ่าน</ion-label>
@@ -220,3 +237,14 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+  .input-custom {
+  width: 100%;
+  height: 50px;
+  color: #19b7cd;
+  border: none;
+  -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
+}
+</style>

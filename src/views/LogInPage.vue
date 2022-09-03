@@ -10,10 +10,10 @@
           <div id="box">
             <H1 style="text-align: center">เข้าสู่ระบบ</H1><br />
             <input
-               v-model="email" 
+              v-model="email"
               class="input-custom"
               type="text"
-              placeholder="อีเมล"
+              placeholder="ชื่อผู้ใช้ shinerut1215"
             /><br /><br />
             <input
               v-model="password"
@@ -21,13 +21,31 @@
               type="password"
               placeholder="รหัสผ่าน"
             /><br /><br />
-            <button class="button-custom" @click="login">เข้าสู่ระบบ</button><br /><br />
+            <button class="button-custom" @click="login">เข้าสู่ระบบ</button
+            ><br /><br />
             <!-- <ion-button  class="button-custom" color="secondary" >ตกลง</ion-button> -->
 
-            <div style="margin-top: 10px">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-top: 10px;
+              "
+            >
               <div
-                class="I"
-                style="color: #eb6957"
+                class=""
+                style="color: #19b7cd"
+                @click="
+                  () => {
+                    router.push('/tabs/home');
+                  }
+                "
+              >
+                หน้าหลัก
+              </div>
+              <div
+                class=""
+                style="color: #19b7cd"
                 @click="
                   () => {
                     router.push('/signup');
@@ -50,39 +68,38 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { defineComponent } from "vue";
 const endPoint = "https://api.system-searchpet.com";
-export default defineComponent ({
+export default defineComponent({
   components: { IonContent, IonPage },
-  data(){
+  data() {
     return {
-      email : "abc98@hotmail.com",
-      password : "123456"
-    }
+      email: "",
+      password: "",
+    };
   },
   methods: {
-    login(){
-      axios.post(`${endPoint}/login`,{
-        email : this.email,
-        password : this.password
-      })
-      .then((res)=>{  
-        if(res.status==200){
-          if(res.data.status==true){
-            console.log(res.data.data);
-            localStorage.setItem("userData",JSON.stringify(res.data.data))
-            this.router.push("/tabs/home");
-          }else{
-            alert(res.data.message)
+    login() {
+      axios
+        .post(`${endPoint}/login`, {
+          email: this.email,
+          password: this.password,
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            if (res.data.status == true) {
+              console.log(res.data.data);
+              localStorage.setItem("userData", JSON.stringify(res.data.data));
+              this.router.push("/tabs/home");
+            } else {
+              alert(res.data.message);
+            }
           }
-        }
-
-      })
-    }
+        });
+    },
   },
   setup() {
     const router = useRouter();
     return { router };
   },
-
 });
 </script>
 
@@ -90,7 +107,7 @@ export default defineComponent ({
 .input-custom {
   width: 100%;
   height: 50px;
-  color: #f49284;
+  color: #19b7cd;
   border: none;
   -webkit-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 14px 35px -13px rgba(0, 0, 0, 0.75);
@@ -162,5 +179,8 @@ export default defineComponent ({
 }
 .I {
   text-align: right;
+}
+.Y {
+  text-align: left;
 }
 </style>

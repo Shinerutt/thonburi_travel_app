@@ -30,66 +30,24 @@
         </div>
         <!--  -->
         <div>
-
+          ชื่อผู้ใช้
           <input
                v-model="userData.email" 
               class="input-custom"
               type="text"
             /><br />
+            ชื่อ
           <input
                v-model="userData.first_name" 
               class="input-custom"
               type="text"
             /><br />
+            นามสกุล
           <input
                v-model="userData.last_name" 
               class="input-custom"
               type="text"
             /><br />
-          
-          <!-- <ion-item>
-            <ion-label position="stacked">อีเมล</ion-label>
-            <ion-input
-              type="text"
-              @ionInput="userData.email = $event.target.value"
-              :value="userData.email"
-            ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">ชื่อจริง</ion-label>
-            <ion-input
-              type="text"
-              @ionInput="userData.first_name = $event.target.value"
-              :value="userData.first_name"
-            ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">นามสกุล</ion-label>
-            <ion-input
-              type="text"
-              @ionInput="userData.last_name = $event.target.value"
-              :value="userData.last_name"
-            ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">ชื่อเล่น</ion-label>
-            <ion-input
-              type="text"
-              @ionInput="userData.nick_name = $event.target.value"
-              :value="userData.nick_name"
-            ></ion-input>
-          </ion-item> -->
-
-          <!-- <ion-item>
-            <ion-label position="stacked">รหัสผ่าน</ion-label>
-            <ion-input
-              @ionInput="userData.password = $event.target.value"
-              :value="userData.password" type="password"
-            ></ion-input>
-          </ion-item> -->
 
           <ion-button
             expand="block"

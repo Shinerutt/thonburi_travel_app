@@ -36,7 +36,7 @@
           @click="clickActive('restaurant')"
           :class="{ active: active_btn == 'restaurant' ? true : false }"
         >
-          ร้านอาหาร
+          อาหาร
         </div>
       </div>
       <ion-toolbar>

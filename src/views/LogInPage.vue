@@ -13,7 +13,7 @@
               v-model="email"
               class="input-custom"
               type="text"
-              placeholder="ชื่อผู้ใช้ shinerut1215"
+              placeholder="ชื่อผู้ใช้ shinerut12155"
             /><br /><br />
             <input
               v-model="password"

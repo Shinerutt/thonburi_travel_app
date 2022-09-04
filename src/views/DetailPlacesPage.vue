@@ -52,6 +52,8 @@
               <div style="font-weight: 500">@{{ comments_item.user.email }}</div>
               <br />
               {{ comments_item.content }}
+              <br><br>
+              {{comments_item.created_at}}
             </div>
           </div>
         </div>

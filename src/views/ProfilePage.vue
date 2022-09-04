@@ -30,24 +30,24 @@
         </div>
         <!--  -->
         <div>
-          ชื่อผู้ใช้
+          ชื่อผู้ใช้<br />
           <input
-               v-model="userData.email" 
-              class="input-custom"
-              type="text"
-            /><br />
-            ชื่อ
+            v-model="userData.email"
+            class="input-custom"
+            type="text"
+          /><br />
+          ชื่อ<br />
           <input
-               v-model="userData.first_name" 
-              class="input-custom"
-              type="text"
-            /><br />
-            นามสกุล
+            v-model="userData.first_name"
+            class="input-custom"
+            type="text"
+          /><br />
+          นามสกุล<br />
           <input
-               v-model="userData.last_name" 
-              class="input-custom"
-              type="text"
-            /><br />
+            v-model="userData.last_name"
+            class="input-custom"
+            type="text"
+          /><br />
 
           <ion-button
             expand="block"
@@ -78,6 +78,7 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  onIonViewWillEnter
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
@@ -98,16 +99,17 @@ console.log(app_firebase);
 
 export default defineComponent({
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
-  created() {
-    var userData = localStorage.getItem("userData");
-    if (userData != null) {
-      this.isLogin = true;
-      this.userData = JSON.parse(userData);
-      this.img = this.userData.img_profile;
-    }
-    console.log(userData);
+  onIonViewWillEnter() {
+    console.log("profliepage");
+    
+    // var userData = localStorage.getItem("userData");
+    // if (userData != null) {
+    //   this.isLogin = true;
+    //   this.userData = JSON.parse(userData);
+    //   this.img = this.userData.img_profile;
+    // }
+    // console.log(userData);
   },
-
   data() {
     // { } = odject
     return {
@@ -196,7 +198,7 @@ export default defineComponent({
 });
 </script>
 <style>
-  .input-custom {
+.input-custom {
   width: 100%;
   height: 50px;
   color: #19b7cd;

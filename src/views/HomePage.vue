@@ -46,6 +46,7 @@
         ></IonSearchbar>
       </ion-toolbar>
 
+      <button @click="link_profile">OK</button>
       <div >
         <ion-card 
           @click="openDetail(item)"
@@ -165,6 +166,9 @@ export default defineComponent({
           console.log("finally");
         });
     },
+    link_profile(){
+      this.router.push('/tabs/profile');
+    }
   },
 });
 </script>

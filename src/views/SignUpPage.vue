@@ -8,7 +8,7 @@
         <div id="crical4"></div>
         <div id="square">
           <div id="box" >
-            <h1 style="text-align: center;">สมัครสมาชิก</h1>
+            <h1 style="text-align: center; color: black;">สมัครสมาชิก</h1>
             <br />
             <input
               v-model="record.email"
@@ -27,12 +27,12 @@
               placeholder="รหัสผ่าน"
             />
             <input
-              v-model="record.nickname"
+              v-model="record.confirm_password"
               class="input-custom"
-              type="text"
-              name="nickname"
-              id="nickname"
-              placeholder="ชื่อเล่น"
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              placeholder="ยืนยันรหัสผ่าน"
             />
             <button @click="signup" class="button-custom">สมัครสมาชิก</button
             ><br /><br />
@@ -84,6 +84,10 @@ export default defineComponent({
   components: { IonContent, IonPage },
   methods: {
     signup() {
+      if(this.record.password!=this.record.confirm_password){
+        alert("รหัสผ่านไม่ตรงกับยืนยันรหัสผ่าน")
+        return false
+      }
       console.log(this.record);
       axios
         .post(`${endPoint}/register`, {
@@ -93,7 +97,7 @@ export default defineComponent({
           if (res.data.status == true) {
             this.router.push("/login");
           } else {
-            alert("Register Error!!!");
+            alert("สมัครสมาชิกไม่สำเร็จ!!!");
           }
         })
         .catch((error) => {
@@ -113,6 +117,7 @@ export default defineComponent({
       record: {
         email: "",
         password: "",
+        confirm_password:"",
         first_name: "",
         last_name: "",
         nick_name: "",

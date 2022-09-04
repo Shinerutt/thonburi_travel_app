@@ -8,7 +8,7 @@
         <div id="crical4"></div>
         <div id="square">
           <div id="box">
-            <H1 style="text-align: center">เข้าสู่ระบบ</H1><br />
+            <H1 style="text-align: center ; color: black;">เข้าสู่ระบบ</H1><br />
             <input
               v-model="email"
               class="input-custom"
@@ -72,8 +72,8 @@ export default defineComponent({
   components: { IonContent, IonPage },
   data() {
     return {
-      email: "",
-      password: "",
+      email: "shinerut1234",
+      password: "ballza1234",
     };
   },
   methods: {

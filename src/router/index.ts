@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../views/TabsPage.vue'
-
+import ProfilePage from "../views/ProfilePage.vue"
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -48,7 +48,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/TripsPage.vue')
       },{
         path: 'profile',
-        component: () => import('@/views/ProfilePage.vue')
+        component: ProfilePage
       },{
         path: 'rec/detail/:id',
         component: () => import('@/views/RecommededPlacesDetail.vue')

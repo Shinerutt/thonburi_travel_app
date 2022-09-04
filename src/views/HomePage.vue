@@ -46,13 +46,14 @@
         ></IonSearchbar>
       </ion-toolbar>
 
+      <button @click="link_profile">OK</button>
       <div >
         <ion-card 
           @click="openDetail(item)"
           v-for="item in lists_filter"
           :key="item.id"
         >
-          <img :src="item.img_places[0]"  />
+          <img :src="item.img_places[0]" />
           <ion-card-header >
             <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
             <ion-card-title style="font-size:1.2rem;" >{{ item.name }}</ion-card-title>
@@ -165,6 +166,9 @@ export default defineComponent({
           console.log("finally");
         });
     },
+    link_profile(){
+      this.router.push('/tabs/profile');
+    }
   },
 });
 </script>

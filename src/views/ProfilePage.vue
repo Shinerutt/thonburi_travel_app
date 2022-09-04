@@ -6,62 +6,28 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <!-- {{isLogin}} -->
+   
       <div v-if="isLogin == true">
         <div style="margin: 20px; text-align: center">
-          <img
-            :src="img"
-            style="
+          <img :src="img" style="
               width: 150px;
               height: 150px;
               border-radius: 100%;
               box-shadow: 0px 0px 0px 0.5px rgba(0, 0, 0, 0.75);
-            "
-            alt=""
-            @click="change_img"
-          />
-          <input
-            type="file"
-            style="display: none"
-            ref="input_img"
-            @change="previewImage"
-            accept="image/*"
-          />
+            " alt="" @click="change_img" />
+          <input type="file" style="display: none" ref="input_img" @change="previewImage" accept="image/*" />
         </div>
         <!--  -->
         <div>
           ชื่อผู้ใช้<br />
-          <input
-            v-model="userData.email"
-            class="input-custom"
-            type="text"
-          /><br />
+          <input v-model="userData.email" class="input-custom" type="text" /><br />
           ชื่อ<br />
-          <input
-            v-model="userData.first_name"
-            class="input-custom"
-            type="text"
-          /><br />
+          <input v-model="userData.first_name" class="input-custom" type="text" /><br />
           นามสกุล<br />
-          <input
-            v-model="userData.last_name"
-            class="input-custom"
-            type="text"
-          /><br />
+          <input v-model="userData.last_name" class="input-custom" type="text" /><br />
 
-          <ion-button
-            expand="block"
-            style="margin-top: 20px"
-            @click="update_profile"
-            >บันทึก</ion-button
-          >
-          <ion-button
-            expand="block"
-            style="margin-top: 20px"
-            color="danger"
-            @click="logout"
-            >ออกจากระบบ</ion-button
-          >
+          <ion-button expand="block" style="margin-top: 20px" @click="update_profile">บันทึก</ion-button>
+          <ion-button expand="block" style="margin-top: 20px" color="danger" @click="logout">ออกจากระบบ</ion-button>
         </div>
       </div>
       <div v-else>
@@ -78,9 +44,10 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  onIonViewWillEnter
+  onIonViewDidEnter,
+  onIonViewDidLeave
 } from "@ionic/vue";
-import { defineComponent } from "vue";
+import { defineComponent,ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import firebase from "firebase";
@@ -99,17 +66,17 @@ console.log(app_firebase);
 
 export default defineComponent({
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
-  onIonViewWillEnter() {
-    console.log("profliepage");
-    
-    // var userData = localStorage.getItem("userData");
-    // if (userData != null) {
-    //   this.isLogin = true;
-    //   this.userData = JSON.parse(userData);
-    //   this.img = this.userData.img_profile;
-    // }
-    // console.log(userData);
+  ionViewWillEnter() {
+    var userData = localStorage.getItem("userData");
+    if (userData != null) {
+      this.isLogin = true;
+      this.userData = JSON.parse(userData);
+      this.img = this.userData.img_profile;
+    }else{
+      this.isLogin = false
+    }
   },
+  
   data() {
     // { } = odject
     return {
@@ -129,6 +96,7 @@ export default defineComponent({
       },
     };
   },
+  
   methods: {
     goToLogin() {
       this.router.push("/login");
@@ -193,6 +161,8 @@ export default defineComponent({
   },
   setup() {
     const router = useRouter();
+   
+
     return { router };
   },
 });

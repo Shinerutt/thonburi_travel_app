@@ -133,7 +133,7 @@ export default defineComponent({
     IonTextarea,
     IonButton,
   },
-  created() {
+  ionViewWillEnter() {
     this.get_detail(this.$route.params.id);
     console.log(new Date().getTime());
   },

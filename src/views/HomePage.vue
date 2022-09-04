@@ -116,7 +116,7 @@ export default defineComponent({
       },
     };
   },
-  created() {
+  ionViewWillEnter() {
     console.log("component working");
     // this.getAPI();
     this.clickActive("all");

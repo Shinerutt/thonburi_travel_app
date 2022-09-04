@@ -78,7 +78,7 @@ export default defineComponent({
       window_open: false,
     };
   },
-  created() {
+  ionViewWillEnter() {
     console.log("component working");
     // this.getAPI();
     this.getLocation();

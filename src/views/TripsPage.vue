@@ -40,7 +40,7 @@ import { useRouter } from "vue-router";
 export default defineComponent( {
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
   ,
-  created(){
+  ionViewWillEnter(){
     this.get_detail()
   },
   data() {

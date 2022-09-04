@@ -37,7 +37,7 @@ export default defineComponent ({
       },
     }
   },
-   created() {
+   ionViewWillEnter() {
     this.get_detail(this.$route.params.id);
     console.log(new Date().getTime());
   },

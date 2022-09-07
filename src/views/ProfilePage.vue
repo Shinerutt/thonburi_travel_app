@@ -30,7 +30,8 @@
           <ion-button expand="block" style="margin-top: 20px" color="danger" @click="logout">ออกจากระบบ</ion-button>
         </div>
       </div>
-      <div v-else style="padding-top: 70%;">
+      <div v-else style="padding-top: 10%;">
+        <img src="../assets/Desktop2.png" alt="">
         <ion-button expand="block" @click="goToLogin">เข้าสู่ระบบ</ion-button>
       </div>
     </ion-content>

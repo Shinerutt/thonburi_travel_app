@@ -20,17 +20,17 @@
         <!--  -->
         <div>
           ชื่อผู้ใช้<br />
-          <input v-model="userData.email" class="input-custom" type="text" /><br />
+          <input @keyup="change_profile" v-model="userData.email" class="input-custom" type="text" /><br />
           ชื่อ<br />
-          <input v-model="userData.first_name" class="input-custom" type="text" /><br />
+          <input @keyup="change_profile" v-model="userData.first_name" class="input-custom" type="text" /><br />
           นามสกุล<br />
-          <input v-model="userData.last_name" class="input-custom" type="text" /><br />
-
-          <ion-button expand="block" style="margin-top: 20px" @click="update_profile">บันทึก</ion-button>
+          <input @keyup="change_profile" v-model="userData.last_name" class="input-custom" type="text" /><br />
+          
+          <ion-button expand="block" style="margin-top: 20px" @click="update_profile" :disabled="change_proflie_status">บันทึก</ion-button>
           <ion-button expand="block" style="margin-top: 20px" color="danger" @click="logout">ออกจากระบบ</ion-button>
         </div>
       </div>
-      <div v-else>
+      <div v-else style="padding-top: 70%;">
         <ion-button expand="block" @click="goToLogin">เข้าสู่ระบบ</ion-button>
       </div>
     </ion-content>
@@ -94,6 +94,7 @@ export default defineComponent({
         created_at: "",
         updated_at: "",
       },
+      change_proflie_status:true,
     };
   },
   
@@ -144,6 +145,7 @@ export default defineComponent({
           if (res.data.status == true) {
             localStorage.setItem("userData", JSON.stringify(res.data.data));
             this.userData = res.data.data;
+            this.change_proflie_status=true
             alert("Upadte  Proflie Success");
           } else {
             alert(res.data.message);
@@ -157,6 +159,9 @@ export default defineComponent({
     logout() {
       localStorage.removeItem("userData");
       this.router.push("/login");
+    },
+    change_profile(){
+      this.change_proflie_status=false
     },
   },
   setup() {

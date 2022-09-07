@@ -66,7 +66,7 @@
         class="btn-comment"
       >
         <ion-fab-button @click="openComment">
-          <ion-icon :icon="add"></ion-icon>
+          <ion-icon :icon="star"></ion-icon>
         </ion-fab-button>
       </ion-fab>
       <!-- {{record.img_places[0]}} -->
@@ -110,7 +110,7 @@ import {
   IonIcon,
   IonModal,
 } from "@ionic/vue";
-import { add } from "ionicons/icons";
+import { add,star } from "ionicons/icons";
 import { IonItem, IonLabel, IonTextarea } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios, { AxiosResponse } from "axios";
@@ -238,7 +238,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      add,
+      add,star
     };
   },
 });
